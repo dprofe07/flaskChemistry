@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Элемент {{ element.ru_name }}{% endblock %}
+
+{% macro row(first_val, second_val) %}
+    <tr><td>{{ first_val | safe }}:</td><td><b>{{ second_val | safe }}</b></td></tr>
+{% endmacro %}
+
+{% block content -%}
+    <h1>Элемент {{ element.ru_name }}</h1>
+    <table class="element_info">
+        {{ row('Номер', element.number) }}
+        {{ row('Символ', element.label) }}
+        {{ row('Название', element.ru_name) }}
+        {{ row('Период', element.position[0]) }}
+        {{ row('Группа', element.position[1]) }}
+        {{ row('Подгруппа', element.position[2]) }}
+        {{ row('Атомная масса', element.atomic_mass) }}
+        {{ row('Металлические свойства', 'Металл' if element.is_metal else "Неметалл") }}
+        <hr/>
+        {{ row('p<sup>+</sup>, n<sup>0</sup>, e<sup>-</sup>', element.pretty_pne()) }}
+        {{ row('Электронная схема', element.el_schema()) }}
+        {{ row('Электронная формула', element.el_formula()) }}
+        {{ row('Возможные степени окисления', ', '.join(map(str, element.possible_oxidstates))) }}
+    </table>
+{% endblock %}
