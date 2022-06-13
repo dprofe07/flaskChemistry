@@ -17,7 +17,7 @@
         {{ row('Подгруппа', element.position[2]) }}
         {{ row('Атомная масса', element.atomic_mass) }}
         {{ row('Металлические свойства', 'Металл' if element.is_metal else "Неметалл") }}
-        {{ row('Электроотрицательность', element.electroneg }}
+        {{ row('Электроотрицательность', element.electroneg) }}
         <hr/>
         {{ row('p<sup>+</sup>, n<sup>0</sup>, e<sup>-</sup>', element.pretty_pne()) }}
         {{ row('Электронная схема', element.el_schema()) }}
