@@ -12,9 +12,7 @@
         {{ row('Номер', element.number) }}
         {{ row('Символ', element.label) }}
         {{ row('Название', element.ru_name) }}
-        {{ row('Период', element.position[0]) }}
-        {{ row('Группа', element.position[1]) }}
-        {{ row('Подгруппа', element.position[2]) }}
+        {{ row('Расположение', element.pretty_position() }}
         {{ row('Атомная масса', element.atomic_mass) }}
         {{ row('Металлические свойства', 'Металл' if element.is_metal else "Неметалл") }}
         {{ row('Электроотрицательность', element.electroneg) }}

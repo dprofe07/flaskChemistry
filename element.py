@@ -175,3 +175,8 @@ class Element:
         p, n, e = self.count_pne()
 
         return f'{p}p<sup>+</sup>, {n}n<sup>0</sup>, {e}e<sup>-</sup>'
+
+    def pretty_position(self):
+        p, g, sg = self.position
+
+        return f'{p}-й период, {g}-ая группа, {"главная" if sg else "побочная"} подгруппа'
