@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 from exceptions import BaseChemException
 from mendeleev_table import MendeleevTable
 
-if not os.path.exists('/SERVER/is_server'):
+if os.path.exists('/SERVER/is_server'):
     prefix = '/chemistry'
 else:
     prefix = ''
