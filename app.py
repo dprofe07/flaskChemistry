@@ -5,14 +5,13 @@ from flask import Flask, render_template, request, flash, redirect, url_for
 from exceptions import BaseChemException
 from mendeleev_table import MendeleevTable
 
-app = Flask(__name__,)
-app.config['SECRET_KEY'] = 'fdgdfgdfggf786hfg6hfg6h7f'
-
-if os.path.exists('/SERVER/is_server'):
+if not os.path.exists('/SERVER/is_server'):
     prefix = '/chemistry'
-    app.static_url_path = '/chemistry/static'
 else:
     prefix = ''
+
+app = Flask(__name__, f'{prefix}/static')
+app.config['SECRET_KEY'] = 'fdgdfgdfggf786hfg6hfg6h7f'
 
 
 @app.route(f'{prefix}/')
