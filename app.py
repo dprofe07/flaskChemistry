@@ -1,19 +1,26 @@
-from flask import Flask, render_template, request, flash, redirect
+import os
 
-from exceptions import IncorrectElementNumberException, ElementNotFoundException, BaseChemException
+from flask import Flask, render_template, request, flash, redirect, url_for
+
+from exceptions import BaseChemException
 from mendeleev_table import MendeleevTable
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'fdgdfgdfggf786hfg6hfg6h7f'
 
+if os.path.exists('/SERVER/is_server'):
+    prefix = '/chemistry'
+else:
+    prefix = ''
 
-@app.route('/')
-def index():
+
+@app.route(f'{prefix}/')
+def page_index():
     return render_template('index.html', el_list=MendeleevTable.lst)
 
 
-@app.route('/element-by/<type_>', methods=['POST'])
-def element_number(type_):
+@app.route(f'{prefix}/element-by/<type_>', methods=['POST'])
+def page_find_element(type_):
     func, param, err = {
         'number': (
             MendeleevTable.from_number,
@@ -45,18 +52,14 @@ def element_number(type_):
         elem = func(param)
     except BaseChemException:
         flash(err, 'error')
-        return redirect('/', 302)
+        return redirect(url_for('page_index'))
 
-    return redirect(f'/element/{elem.label}', 302)
+    return redirect(url_for('page_element', el=elem.label))#f'/element/{elem.label}')
 
 
-@app.route('/element/<el>')
-def element(el):
+@app.route(f'{prefix}/element/<el>')
+def page_element(el):
     return render_template('element.html', element=MendeleevTable.from_label(el), map=map, str=str)
-
-
-
-
 
 
 if __name__ == '__main__':

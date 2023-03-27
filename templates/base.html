@@ -7,7 +7,7 @@
     </head>
     <body>
         {% if not hide_home_link -%}
-            <a href="/">На главную</a>
+            <a href="{{ url_for('page_index') }}"">На главную</a>
         {% endif %}
 
         {% block content %}{% endblock %}

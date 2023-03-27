@@ -5,25 +5,25 @@
 {% block content %}
     <h1>Химический справочник</h1>
 
-    <form action="/element-by/number" method="post">
+    <form action="{{ url_for("page_find_element", type_="number") }}" method="post">
         <label for="number">Номер: </label>
         <input id="number" name="number" type="number" min="1" max="118" required value="1"/>
         <input type="submit" value="Открыть"/>
     </form>
 
-    <form action="/element-by/label" method="post">
+    <form action="{{ url_for("page_find_element", type_="label") }}" method="post">
         <label for="label">Символ: </label>
         <input id="label" name="label" type="text" maxlength="2" required/>
         <input type="submit" value="Открыть"/>
     </form>
 
-    <form action="/element-by/name" method="post">
+    <form action="{{ url_for("page_find_element", type_="name") }}" method="post">
         <label for="name">Название: </label>
         <input id="name" name="name" type="text" required/>
         <input type="submit" value="Открыть"/>
     </form>
 
-    <form action="/element-by/position" method="post">
+    <form action="{{ url_for("page_find_element", type_="position") }}" method="post">
         <label>Расположение:
             <input name="position_period" type="number" min="1" max="7" required value="1"/>
             <input name="position_group" type="number" min="1" max="8" required value="1"/>
