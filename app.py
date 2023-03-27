@@ -10,6 +10,7 @@ app.config['SECRET_KEY'] = 'fdgdfgdfggf786hfg6hfg6h7f'
 
 if os.path.exists('/SERVER/is_server'):
     prefix = '/chemistry'
+    app.static_folder = '/chemistry/static'
 else:
     prefix = ''
 
